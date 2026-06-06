@@ -1,0 +1,11 @@
+Applicando la legge di Amdahl:
+
+1.25 = 1 / [(1-0.4) + 0.4/s]
+
+=> s = 2
+
+Questo significa che la porzione ottimizzabile deve andare 2 volte più 
+veloce (deve avere uno speedup locale di 2x), e pertanto deve essere 
+eseguita nel 50% del tempo.
+
+La risposta corretta è quindi la C

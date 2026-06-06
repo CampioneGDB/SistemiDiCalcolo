@@ -1,0 +1,1 @@
+Calcola espressioni costanti a compile-time. Esempio: 3+4*2 diventa 11.

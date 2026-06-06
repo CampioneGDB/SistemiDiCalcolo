@@ -1,0 +1,1 @@
+Dopo la strcpy, non viene mai effettuata una free, quindi il blocco di memoria puntato da p non viene mai deallocato.

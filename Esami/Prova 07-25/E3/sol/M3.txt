@@ -1,0 +1,2 @@
+Essendovi --x sul gruppo e altri, si può entrare nella directory ma non leggerne il contenuto, 
+quindi solo accedere a file con nomi noti (supponendo si abbiano i diritti per quei file).

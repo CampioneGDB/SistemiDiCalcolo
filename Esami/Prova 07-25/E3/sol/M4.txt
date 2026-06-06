@@ -1,0 +1,3 @@
+Spazio logico: 1 GiB = 230. 
+Entry: 2048 = 211. 
+Ogni pagina deve coprire:  230/211 = 512 KB

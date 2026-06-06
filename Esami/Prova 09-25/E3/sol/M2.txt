@@ -1,0 +1,1 @@
+La C non è mai possibile, perché la variabile globale viene sovrascritta dalla variabile locale, che viene incrementata di 1, solo dopo la stampa a schermo. Per saltare una cifra sarebbe necessario un aggiornamento della variabile senza una stampa corrispondente, cosa che in questo caso non avviene.

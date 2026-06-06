@@ -1,0 +1,9 @@
+struct S {
+    char a;     |x   |
+    char b;     | x  |
+    short b;    |  xx|
+    int d;      |xxxx|
+};
+
+La struct richiede 8 byte con 0 byte di padding. La risposta corretta è quindi A.
+

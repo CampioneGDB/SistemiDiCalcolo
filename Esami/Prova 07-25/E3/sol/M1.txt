@@ -1,0 +1,6 @@
+Ogni blocco ha 64 byte. 
+Il blocco che contiene l’indirizzo 500 è: 500 div 64 = 7. 
+In una cache a mapping diretto con 8 linee, il blocco 7 va 
+nella linea pari a: blocco mod 8 = 7.
+
+La risposta corretta è quindi la D

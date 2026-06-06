@@ -1,0 +1,4 @@
+Il "loop unrolling" riduce l'overhead delle istruzioni di salto 
+duplicando k volte il corpo del ciclo.
+
+La risposta corretta è quindi la D

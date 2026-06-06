@@ -1,0 +1,17 @@
+1 => eax = 0
+2 => eax = 10
+3 => Shift a sinistra di 3 posizioni (moltiplicazione per 2^3=8) eax = 80
+4 => ecx = 4
+5 => eax = eax - ecx = 76
+6 => ax = 64 | 1 = 65
+
+Se A: sottrae 55 quindi eax = 76 - 55 = 21 ERRATA
+Se B: divide per 2^2 quindi eax = 76 / 4 = 19 CORRETTO
+Se C: Esegue lo XOR bit a bit tra 76 e 65.
+        76 in binario: 0100 1100
+		65 in binario: 0100 0001
+		XOR: 0000 1101
+		1101 in decimale è 13. ERRATA
+se D: A e C sono errate quindi ERRATA
+
+La risposta corretta è quindi B
