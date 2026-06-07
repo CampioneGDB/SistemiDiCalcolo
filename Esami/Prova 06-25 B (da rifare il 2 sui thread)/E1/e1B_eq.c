@@ -2,37 +2,39 @@
 #include "e1B.h"
 
 unsigned char check(mossa* head){
-    mossa* ebp = head;
-    unsigned char ebx = 0;
-    unsigned char esi = 0;
+
+    unsigned char ebx = 0; //count
+    unsigned char ebp = 0; //correct
+    mossa* esi = head;
     unsigned char eax;
     W:
-    if (ebp == 0){
+    if (esi == 0){
         goto R;
     }
+
     ebx++;
-    if (is_valid_move(ebp) == 0){
+    char cl = is_valid_move(esi);
+    if (cl == 0){
         goto E;
     }
-    esi++;
-
+    ebp++;
     E:
-    ebp = ebp->next;
+    esi = esi->next;
     goto W;
 
     R:
-    if (ebx == esi){
-        goto I;
+    if (ebx == ebp){
+        goto A;
     }
     eax = 0;
-    goto RET;
+    goto ret;
 
-    I:
+    A:
     eax = 1;
+    goto ret;
 
-    RET:
+    ret:
     return eax;
 
 
 }
-

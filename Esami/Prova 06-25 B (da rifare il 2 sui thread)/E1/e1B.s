@@ -5,43 +5,41 @@ check:
     pushl %ebx
     pushl %ebp
     pushl %esi
-    pushl %edi
 
-    movl 20(%esp), %ebp
     movl $0, %ebx
-    movl $0, %esi
-    
-    W:
-    cmpl $0, %ebp
-    je R
-    incl %ebx
+    movl $0, %ebp
+    movl 16(%esp), %esi
 
+    W:
+    cmpl $0, %esi
+    je R
+
+    incl %ebx
+    
     subl $4, %esp
-    movl %ebp, (%esp)
+    movl %esi, (%esp)
     call is_valid_move
     addl $4, %esp
     movb %al, %cl
 
     cmpb $0, %cl
     je E
-    incl %esi
-    
+    incl %ebp
     E:
-    movl 12(%ebp), %ebp
+    movl 12(%esi), %esi
     jmp W
 
     R:
-    cmpl %esi, %ebx
-    je I
-
+    cmpl %ebp, %ebx
+    je A
     movl $0, %eax
-    jmp RET
+    jmp ret
 
-    I:
+    A:
     movl $1, %eax
+    jmp ret
 
-    RET:
-    popl %edi
+    ret:
     popl %esi
     popl %ebp
     popl %ebx
