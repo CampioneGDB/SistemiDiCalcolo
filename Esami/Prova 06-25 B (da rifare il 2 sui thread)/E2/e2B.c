@@ -8,14 +8,14 @@
 
 struct thread_info{
     pthread_t thread_id;
-    int* lunghezza;
+    //int* lunghezza;
+    int lunghezza;
     const char* paragrafi;
 };
 
 void* worker(void* arg){
     struct thread_info *dati = arg;
     pthread_t id = dati->thread_id;
-    int* lunghezzadascrivere = dati->lunghezza;
     const char* par = dati->paragrafi;
     char* paragrafo = (char*)par;
     int max = 0;
@@ -27,9 +27,8 @@ void* worker(void* arg){
         }
         token = strtok(NULL, ".");
     }
-    *lunghezzadascrivere = max +1;
+    dati->lunghezza = max +1;
     //printf("Sono %d e max = %d\n",id,(*lunghezzadascrivere));
-    free(dati);
     return NULL;
 }
 
@@ -53,24 +52,25 @@ int getParagrafi(const char* nomefile, char*** paragrafi){
 }
 
 void frasePiuLungaPerParagrafo(const char* nomefile, int* numeroParagrafi, int** lunghezzaFraseMaxPerParagrafo){
+
     FILE* f1 = fopen(nomefile, "r");
     char** paragrafi;
     paragrafi = calloc(sizeof(char**),1024);
     int numparagrafi = getParagrafi(nomefile,&paragrafi);
+    *lunghezzaFraseMaxPerParagrafo = calloc(numparagrafi,sizeof(int));
     int* arraydaritornare = calloc(sizeof(int),numparagrafi);
     pthread_t threads[numparagrafi];
+    struct thread_info **dati = malloc(sizeof(struct thread_info*)*numparagrafi);
     for (int i = 0;i<numparagrafi;i++){
-        struct thread_info *dati = malloc(sizeof(struct thread_info));
-        dati->thread_id = i;
-        dati->lunghezza = &arraydaritornare[i];
-        dati->paragrafi = paragrafi[i];
-        pthread_create(&threads[i],NULL,worker, dati);
+        dati[i] = malloc(sizeof(struct thread_info));
+        dati[i]->thread_id = i;
+        dati[i]->paragrafi = paragrafi[i];
+        pthread_create(&threads[i],NULL,worker, dati[i]);
     }
 
     for (int i = 0;i<numparagrafi;i++){
         pthread_join(threads[i],NULL);
+        (*lunghezzaFraseMaxPerParagrafo)[i] = (dati)[i]->lunghezza;
     }
     *numeroParagrafi = numparagrafi;
-    printf("NumPar = %d\n", *numeroParagrafi);
-    *lunghezzaFraseMaxPerParagrafo = arraydaritornare;
 }
